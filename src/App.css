@@ -8,3 +8,9 @@ html, body{
   width: 100px;
   height: 100px;
 }
+
+.pet-photo{
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+}

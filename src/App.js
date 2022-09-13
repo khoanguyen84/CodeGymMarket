@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -6,15 +6,39 @@ import '../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
 import Header from './component/Header/Header';
 import Market from './component/Market/Market';
 import Footer from './component/Footer/Footer';
+import Cart from './component/Cart/Cart';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
+  const [carts, setCarts] = useState([]);
+  const addToCart = (pet) => {
+    try {
+      let existPet = carts.length && carts.find(item => item.id === pet.id);
+      if (!existPet) {
+        setCarts([...carts, { ...pet, quantity: 1 }])
+      }
+      else {
+        setCarts(
+          carts.map(item => item.id === pet.id ? { ...item, quantity: item.quantity + 1 } : item)
+        )
+      }
+      toast.success("Cart updates success!");
+    } catch (error) {
+      toast.error("Something went wrong, please try again later!");
+    }
+
+  }
   return (
     <React.Fragment>
-      <Header/>
+      <ToastContainer position="bottom-right" autoClose={1000}/>
+      <Header carts={carts} />
       <Routes>
-        <Route path={"/market"} element={<Market/>} />
+        <Route path={"/"} element={<Market />} />
+        <Route path={"/market"} element={<Market addToCart={addToCart} />} />
+        <Route path={"/cart"} element={<Cart carts = {carts} />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </React.Fragment>
   );
 }

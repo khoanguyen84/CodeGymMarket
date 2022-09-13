@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import Spinner from "../Spinner/Spinner";
 import ProductService from './../../services/product/productService';
 
-function Market() {
+function Market(props) {
+    const { addToCart } = props
     const [state, setState] = useState({
         loading: false,
         products: [],
@@ -39,18 +40,20 @@ function Market() {
                         <h4 className="border-bottom border-2 border-warning">Pets</h4>
                         <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                             {
-                                products.map(pdt => (
-                                    <div key={pdt.id} className="col mb-5">
+                                products.map(pet => (
+                                    <div key={pet.id} className="col mb-5">
                                         <div className="card h-100">
-                                            <img className="card-img-top" src={pdt.photoUrl} alt="" />
+                                            <img className="card-img-top" src={pet.photoUrl} alt="" />
                                             <div className="card-body p-4">
                                                 <div className="text-center">
-                                                    <h5 className="fw-bolder">{pdt.name}</h5>
-                                                    ${pdt.minPrice} - ${pdt.maxPrice}
+                                                    <h5 className="fw-bolder">{pet.name}</h5>
+                                                    ${pet.price}
                                                 </div>
                                             </div>
                                             <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                                <div className="text-center"><button className="btn btn-outline-warning mt-auto">Add to Cart</button></div>
+                                                <div className="text-center">
+                                                    <button className="btn btn-outline-warning mt-auto" onClick={() => addToCart(pet)}>Add to Cart</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
