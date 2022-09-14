@@ -27,16 +27,33 @@ function App() {
     } catch (error) {
       toast.error("Something went wrong, please try again later!");
     }
-
+  }
+  const incrementQuantity = (pet) => {
+    setCarts(
+      carts.map(item => item.id === pet.id ? { ...item, quantity: item.quantity + 1 } : item)
+    )
+  }
+  const decrementQuantity = (pet) => {
+    setCarts(preCart => {
+      var result = preCart.map(item => item.id === pet.id ? { ...item, quantity: item.quantity - 1 } : item)
+      return result;
+    });
+    setCarts(preCart => {
+      var result = preCart.filter(item => item.quantity !== 0)
+      return result;
+    });
   }
   return (
     <React.Fragment>
-      <ToastContainer position="bottom-right" autoClose={1000}/>
+      <ToastContainer position="bottom-right" autoClose={1000} />
       <Header carts={carts} />
       <Routes>
         <Route path={"/"} element={<Market />} />
         <Route path={"/market"} element={<Market addToCart={addToCart} />} />
-        <Route path={"/cart"} element={<Cart carts = {carts} />} />
+        <Route path={"/cart"} element={<Cart 
+                                            incrementQuantity= {incrementQuantity}
+                                            decrementQuantity = {decrementQuantity} 
+                                            carts={carts} />} />
       </Routes>
       <Footer />
     </React.Fragment>

@@ -1,7 +1,13 @@
 import React from "react";
+import { Link } from 'react-router-dom';
+import Helper from './../../helper/Helper';
 
 function Cart(props) {
-    const { carts } = props;
+    var { carts, incrementQuantity, decrementQuantity } = props;
+    carts = carts.map((cart) => {
+        return { ...cart, amount: cart.quantity * cart.price }
+    })
+    const totalAmount = carts.reduce((preValue, currenValue) => preValue + currenValue.amount, 0);
     return (
         <section className="py-2">
             <div className="container px-1 px-lg-5 mt-1">
@@ -28,20 +34,61 @@ function Cart(props) {
                                             <td className="text-center">
                                                 <img className="pet-photo" src={pet.photoUrl} alt="" />
                                             </td>
-                                            <td className="text-right">${pet.price}</td>
+                                            <td className="text-right">{Helper.formatCurrency(pet.price)}</td>
                                             <td className="text-center">{pet.quantity}</td>
                                             <td className="text-center">
-                                                <i className="fa fa-plus btn btn-sm btn-danger me-2"></i>
-                                                <i className="fa fa-subtract btn btn-sm btn-primary"></i>
+                                                <i className="fa fa-plus btn btn-sm btn-danger me-2"
+                                                    onClick={() => incrementQuantity(pet)}
+                                                ></i>
+                                                <i className="fa fa-subtract btn btn-sm btn-primary"
+                                                    onClick={() => decrementQuantity(pet)}
+                                                ></i>
                                             </td>
                                         </tr>
                                     ))
                                 }
                             </tbody>
                         </table>
+                        <div>
+                            <Link to = {'/market'} className="btn btn-warning btn-sm">Continue shopping</Link>
+                        </div>
                     </div>
                     <div className="col-4">
                         <h4 className="border-bottom border-2 border-warning">Order summary</h4>
+                        {
+                            carts.length === 0 ? <p>Cart is empty</p> : (
+                                <React.Fragment>
+                                    <div className="card bg-warning">
+                                        <div className="card-body">
+                                            {
+                                                carts.map(cart => (
+                                                    <div keys={cart.id} className="d-flex justify-content-between mb-2 py-2">
+                                                        <div>{cart.name}</div>
+                                                        <div>
+                                                            <h6>{Helper.formatCurrency(cart.amount)}</h6>
+                                                        </div>
+                                                    </div>
+                                                ))
+                                            }
+                                        </div>
+                                        <div className="card-footer border-top">
+                                            <div className="d-flex justify-content-between">
+                                                <div></div>
+                                                <div className="flex-group-1">
+                                                    <h6>{Helper.formatCurrency(totalAmount)}</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="d-flex">
+                                        <button className="flex-grow-1 btn btn-primary mt-2"
+                                            onClick={() => alert('Going to implement')}
+                                        >Checkout</button>
+                                    </div>
+                                </React.Fragment>
+                            )
+
+                        }
                     </div>
                 </div>
 

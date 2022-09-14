@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Spinner from "../Spinner/Spinner";
 import ProductService from './../../services/product/productService';
+import Helper from './../../helper/Helper';
 
 function Market(props) {
     const { addToCart } = props
@@ -47,7 +48,7 @@ function Market(props) {
                                             <div className="card-body p-4">
                                                 <div className="text-center">
                                                     <h5 className="fw-bolder">{pet.name}</h5>
-                                                    ${pet.price}
+                                                    {Helper.formatCurrency( pet.price)}
                                                 </div>
                                             </div>
                                             <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
