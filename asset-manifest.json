@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/CodeGymMarket/static/css/main.96e5ddf5.css",
+    "main.js": "/CodeGymMarket/static/js/main.f4538284.js",
+    "static/media/loading.gif": "/CodeGymMarket/static/media/loading.2187296e5d399b5c8373.gif",
+    "static/media/fa-solid-900.ttf": "/CodeGymMarket/static/media/fa-solid-900.b48ad290d0335879a92b.ttf",
+    "static/media/fa-brands-400.ttf": "/CodeGymMarket/static/media/fa-brands-400.f9ee61fab3c11e2f3ed3.ttf",
+    "static/media/fa-solid-900.woff2": "/CodeGymMarket/static/media/fa-solid-900.66104b766c3d0462b3c5.woff2",
+    "static/media/fa-brands-400.woff2": "/CodeGymMarket/static/media/fa-brands-400.e1a247a5ef41e1975742.woff2",
+    "static/media/fa-regular-400.ttf": "/CodeGymMarket/static/media/fa-regular-400.abf801b7acb6705a15ad.ttf",
+    "static/media/fa-regular-400.woff2": "/CodeGymMarket/static/media/fa-regular-400.639d2000c1ece92eaec8.woff2",
+    "static/media/fa-v4compatibility.ttf": "/CodeGymMarket/static/media/fa-v4compatibility.f601162ae669f88823a3.ttf",
+    "static/media/fa-v4compatibility.woff2": "/CodeGymMarket/static/media/fa-v4compatibility.745989aab0d69cab7e70.woff2",
+    "index.html": "/CodeGymMarket/index.html",
+    "main.96e5ddf5.css.map": "/CodeGymMarket/static/css/main.96e5ddf5.css.map",
+    "main.f4538284.js.map": "/CodeGymMarket/static/js/main.f4538284.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.96e5ddf5.css",
+    "static/js/main.f4538284.js"
+  ]
+}
