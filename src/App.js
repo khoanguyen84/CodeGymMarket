@@ -35,7 +35,6 @@ function App() {
           carts.map(item => item.id === pet.id ? { ...item, quantity: item.quantity + 1 } : item)
         )
       }
-      console.log("2")
       toast.success("Cart updates success!");
     } catch (error) {
       toast.error("Something went wrong, please try again later!");
@@ -58,6 +57,11 @@ function App() {
       return result;
     });
   }
+
+  const checkout = () => {
+    setCarts([]);
+    toast.success("Cart has been checkout success");
+  }
   
   Helper.saveLocalStorage(cartKey, carts);
   return (
@@ -70,6 +74,7 @@ function App() {
         <Route path={"/pets-store/cart"} element={<Cart 
                                             incrementQuantity= {incrementQuantity}
                                             decrementQuantity = {decrementQuantity} 
+                                            checkout = {checkout}
                                             carts={carts} />} />
       </Routes>
       <Footer />

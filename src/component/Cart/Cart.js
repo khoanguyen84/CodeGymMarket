@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Helper from './../../helper/Helper';
 
 function Cart(props) {
-    var { carts, incrementQuantity, decrementQuantity } = props;
+    var { carts, incrementQuantity, decrementQuantity, checkout } = props;
     carts = carts.map((cart) => {
         return { ...cart, amount: cart.quantity * cart.price }
     })
@@ -80,7 +80,7 @@ function Cart(props) {
                                     </div>
                                     <div className="d-flex flex-column">
                                         <button className="flex-grow-1 btn btn-primary btn-sm my-1"
-                                            onClick={() => alert('Going to implement')}
+                                            onClick={checkout}
                                         >Checkout</button>
                                         <Link to={'/pets-store/market'} className="btn btn-secondary btn-sm flex-grow-1">Continue shopping</Link>
                                     </div>
