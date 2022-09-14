@@ -50,7 +50,7 @@ function Cart(props) {
                             </tbody>
                         </table>
                         <div>
-                            <Link to = {'/market'} className="btn btn-warning btn-sm">Continue shopping</Link>
+                            <Link to = {'/pets-store/market'} className="btn btn-warning btn-sm">Continue shopping</Link>
                         </div>
                     </div>
                     <div className="col-4">

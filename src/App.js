@@ -48,9 +48,9 @@ function App() {
       <ToastContainer position="bottom-right" autoClose={1000} />
       <Header carts={carts} />
       <Routes>
-        <Route path={"/"} element={<Market />} />
-        <Route path={"/market"} element={<Market addToCart={addToCart} />} />
-        <Route path={"/cart"} element={<Cart 
+        <Route path={"/pets-store/"} element={<Market />} />
+        <Route path={"/pets-store/market"} element={<Market addToCart={addToCart} />} />
+        <Route path={"/pets-store/cart"} element={<Cart 
                                             incrementQuantity= {incrementQuantity}
                                             decrementQuantity = {decrementQuantity} 
                                             carts={carts} />} />
