@@ -14,3 +14,7 @@ html, body{
   height: 60px;
   border-radius: 10px;
 }
+
+.border-bottom-style{
+  border-bottom: 1px dashed white;
+}

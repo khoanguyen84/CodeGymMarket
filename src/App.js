@@ -9,9 +9,21 @@ import Footer from './component/Footer/Footer';
 import Cart from './component/Cart/Cart';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Helper from './helper/Helper';
 
+
+const cartKey = "cart-data";
 function App() {
-  const [carts, setCarts] = useState([]);
+  const [carts, setCarts] = useState(() => {
+    let dataLocalStorage = [];
+    if(Helper.getLocalStorage(cartKey) === null){
+      Helper.saveLocalStorage(cartKey, [])
+    }else{
+      dataLocalStorage = Helper.getLocalStorage(cartKey);
+    }
+    return dataLocalStorage;
+  });
+
   const addToCart = (pet) => {
     try {
       let existPet = carts.length && carts.find(item => item.id === pet.id);
@@ -23,16 +35,19 @@ function App() {
           carts.map(item => item.id === pet.id ? { ...item, quantity: item.quantity + 1 } : item)
         )
       }
+      console.log("2")
       toast.success("Cart updates success!");
     } catch (error) {
       toast.error("Something went wrong, please try again later!");
     }
   }
+
   const incrementQuantity = (pet) => {
     setCarts(
       carts.map(item => item.id === pet.id ? { ...item, quantity: item.quantity + 1 } : item)
     )
   }
+
   const decrementQuantity = (pet) => {
     setCarts(preCart => {
       var result = preCart.map(item => item.id === pet.id ? { ...item, quantity: item.quantity - 1 } : item)
@@ -43,6 +58,8 @@ function App() {
       return result;
     });
   }
+  
+  Helper.saveLocalStorage(cartKey, carts);
   return (
     <React.Fragment>
       <ToastContainer position="bottom-right" autoClose={1000} />
